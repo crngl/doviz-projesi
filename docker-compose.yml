@@ -1,0 +1,92 @@
+# Docker Compose version 3.8
+
+services:
+  # PostgreSQL Veritabanı
+  postgres:
+    image: postgres:15
+    container_name: doviz_db
+    environment:
+      POSTGRES_DB: doviz_db
+      POSTGRES_USER: doviz_user
+      POSTGRES_PASSWORD: doviz_password
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - doviz_network
+
+  # Redis Cache
+  redis:
+    image: redis:7-alpine
+    container_name: doviz_redis
+    ports:
+      - "6379:6379"
+    networks:
+      - doviz_network
+
+  # Flask API Backend
+  api:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: doviz_api
+    environment:
+      - DATABASE_URL=postgresql://doviz_user:doviz_password@postgres:5432/doviz_db
+      - REDIS_URL=redis://redis:6379
+      - TCMB_API_URL=https://evds2.tcmb.gov.tr/service/evds
+      - TCMB_API_KEY=your_api_key_here
+    ports:
+      - "5000:5000"
+    depends_on:
+      - postgres
+      - redis
+    volumes:
+      - ./backend:/app
+    networks:
+      - doviz_network
+    restart: unless-stopped
+
+  # React Frontend
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: doviz_frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - api
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    networks:
+      - doviz_network
+    restart: unless-stopped
+
+  # Cron Job için Scheduler
+  scheduler:
+    build:
+      context: ./scheduler
+      dockerfile: Dockerfile
+    container_name: doviz_scheduler
+    environment:
+      - DATABASE_URL=postgresql://doviz_user:doviz_password@postgres:5432/doviz_db
+      - REDIS_URL=redis://redis:6379
+      - TCMB_API_URL=https://evds2.tcmb.gov.tr/service/evds
+      - TCMB_API_KEY=your_api_key_here
+    depends_on:
+      - postgres
+      - redis
+    volumes:
+      - ./scheduler:/app
+    networks:
+      - doviz_network
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
+
+networks:
+  doviz_network:
+    driver: bridge 

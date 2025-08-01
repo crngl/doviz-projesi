@@ -1,0 +1,15 @@
+2025-08-01 06:55:56,480 - __main__ - INFO - Döviz kuru scheduler başlatılıyor...
+2025-08-01 06:55:56,481 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2025-08-01 06:55:56,481 - __main__ - INFO - Scheduler başlatıldı. Her gün saat 04:00'da çalışacak.
+2025-08-01 06:55:56,484 - apscheduler.scheduler - INFO - Added job "Günlük döviz kuru toplama" to job store "default"
+2025-08-01 06:55:56,484 - apscheduler.scheduler - INFO - Scheduler started
+2025-08-01 07:02:44,547 - __main__ - INFO - Döviz kuru scheduler başlatılıyor...
+2025-08-01 07:02:44,549 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2025-08-01 07:02:44,550 - __main__ - INFO - Scheduler başlatıldı. Her gün saat 04:00'da çalışacak.
+2025-08-01 07:02:44,555 - apscheduler.scheduler - INFO - Added job "Günlük döviz kuru toplama" to job store "default"
+2025-08-01 07:02:44,557 - apscheduler.scheduler - INFO - Scheduler started
+2025-08-01 08:37:56,381 - __main__ - INFO - Döviz kuru scheduler başlatılıyor...
+2025-08-01 08:37:56,384 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2025-08-01 08:37:56,385 - __main__ - INFO - Scheduler başlatıldı. Her gün saat 04:00'da çalışacak.
+2025-08-01 08:37:56,391 - apscheduler.scheduler - INFO - Added job "Günlük döviz kuru toplama" to job store "default"
+2025-08-01 08:37:56,393 - apscheduler.scheduler - INFO - Scheduler started
