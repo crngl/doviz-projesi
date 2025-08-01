@@ -198,7 +198,7 @@ Bu proje MIT lisansı altında lisanslanmıştır.
 
 ## 📞 İletişim
 
-Sorularınız için issue açabilir veya email gönderebilirsiniz.
+Sorularınız için cerengol21@gmail.com a mail atabilirsiniz.
 
 ---
 
